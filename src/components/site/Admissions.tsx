@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { usePersona } from "./persona";
 
 const steps = [
   { n: "01", title: "Online Application", text: "Submit our portal application with your educational history and intended major." },
@@ -9,24 +10,23 @@ const steps = [
 ];
 
 export const Admissions = () => {
+  const { copy } = usePersona();
   return (
     <section id="admissions" className="py-24 lg:py-32 bg-background">
       <div className="container-academy">
         <div className="grid lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-4">Admissions</p>
+            <p className="eyebrow mb-4">{copy.admissionsEyebrow}</p>
             <h2 className="text-4xl lg:text-5xl font-bold text-primary leading-[1.05]">
-              Join the next generation of makers.
+              {copy.admissionsHeadline}
             </h2>
           </div>
           <div className="lg:col-span-7 lg:pt-4">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We seek restless curiosity, a passion for problem-solving, and a relentless drive
-              to make impact. Nexus Academy is entirely test-optional — over 75% of our students
-              receive financial assistance.
+              {copy.admissionsBody}
             </p>
             <Button className="mt-8 group">
-              Begin Application
+              {copy.admissionsCta}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
