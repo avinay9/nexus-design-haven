@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { usePersona } from "./persona";
 
 const links = [
   { label: "About", href: "#about" },
   { label: "Programs", href: "#programs" },
   { label: "Admissions", href: "#admissions" },
-  { label: "Showcase", href: "#showcase" },
+  { label: "Voice Lab", href: "#microcopy" },
   { label: "Campus Life", href: "#campus" },
 ];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { copy } = usePersona();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -31,12 +33,12 @@ export const Navbar = () => {
     >
       <div className="container-academy flex h-16 lg:h-20 items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          <div className="h-8 w-8 bg-primary text-primary-foreground grid place-items-center font-bold text-sm">
+          <div className="h-8 w-8 bg-primary text-primary-foreground grid place-items-center font-bold text-sm rounded-[var(--radius)]">
             N
           </div>
           <div className="leading-tight">
             <div className="font-bold text-primary text-sm tracking-tight">NEXUS ACADEMY</div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">of Design</div>
+            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{copy.brandTagline}</div>
           </div>
         </a>
 
@@ -54,9 +56,9 @@ export const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <a href="#" className="text-sm font-medium text-primary/70 hover:text-primary">
-            Student Portal
+            {copy.ctaSecondary}
           </a>
-          <Button>Apply Now</Button>
+          <Button>{copy.ctaPrimary}</Button>
         </div>
 
         <button
@@ -81,7 +83,7 @@ export const Navbar = () => {
                 {l.label}
               </a>
             ))}
-            <Button className="w-full">Apply Now</Button>
+            <Button className="w-full">{copy.ctaPrimary}</Button>
           </div>
         </div>
       )}
