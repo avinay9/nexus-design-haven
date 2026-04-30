@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,7 @@
 
 @layer base {
   :root {
+    /* === Default = Ivy League (Traditional) === */
     --background: 0 0% 100%;
     --foreground: 214 100% 12%;
 
@@ -15,7 +16,6 @@
     --popover: 0 0% 100%;
     --popover-foreground: 214 100% 12%;
 
-    /* Deep navy #001f3f */
     --primary: 214 100% 12%;
     --primary-foreground: 0 0% 100%;
 
@@ -25,8 +25,8 @@
     --muted: 214 20% 96%;
     --muted-foreground: 214 15% 40%;
 
-    --accent: 214 100% 12%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 42 60% 55%;
+    --accent-foreground: 214 100% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -41,6 +41,13 @@
     --navy-soft: 214 60% 20%;
     --gold: 42 60% 55%;
 
+    /* Typography (per persona) */
+    --font-sans: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Image mood filter */
+    --image-filter: sepia(0.15) saturate(0.9) contrast(1.05);
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -49,6 +56,81 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* === Persona: Ivy League === */
+  html[data-persona="ivy"] {
+    --background: 0 0% 100%;
+    --foreground: 214 100% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 100% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 100% 12%;
+    --primary: 214 100% 12%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 30% 96%;
+    --secondary-foreground: 214 100% 12%;
+    --muted: 214 20% 96%;
+    --muted-foreground: 214 15% 40%;
+    --accent: 42 60% 55%;
+    --accent-foreground: 214 100% 12%;
+    --border: 214 20% 90%;
+    --input: 214 20% 90%;
+    --ring: 214 100% 12%;
+    --radius: 0.25rem;
+    --font-sans: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --image-filter: sepia(0.15) saturate(0.9) contrast(1.05);
+  }
+
+  /* === Persona: Tech Disruptor === */
+  html[data-persona="tech"] {
+    --background: 220 18% 7%;
+    --foreground: 140 80% 75%;
+    --card: 220 18% 10%;
+    --card-foreground: 140 80% 80%;
+    --popover: 220 18% 10%;
+    --popover-foreground: 140 80% 80%;
+    --primary: 140 95% 55%;
+    --primary-foreground: 220 18% 7%;
+    --secondary: 220 18% 12%;
+    --secondary-foreground: 140 80% 75%;
+    --muted: 220 18% 14%;
+    --muted-foreground: 140 20% 60%;
+    --accent: 140 95% 55%;
+    --accent-foreground: 220 18% 7%;
+    --border: 220 18% 18%;
+    --input: 220 18% 18%;
+    --ring: 140 95% 55%;
+    --radius: 0rem;
+    --font-sans: 'JetBrains Mono', ui-monospace, monospace;
+    --font-body: 'JetBrains Mono', ui-monospace, monospace;
+    --image-filter: grayscale(0.4) contrast(1.2) hue-rotate(70deg) brightness(0.8);
+  }
+
+  /* === Persona: Humanist === */
+  html[data-persona="humanist"] {
+    --background: 36 38% 96%;
+    --foreground: 16 35% 22%;
+    --card: 36 50% 98%;
+    --card-foreground: 16 35% 22%;
+    --popover: 36 50% 98%;
+    --popover-foreground: 16 35% 22%;
+    --primary: 14 55% 48%;
+    --primary-foreground: 36 50% 98%;
+    --secondary: 95 18% 88%;
+    --secondary-foreground: 95 25% 22%;
+    --muted: 36 30% 92%;
+    --muted-foreground: 16 20% 40%;
+    --accent: 95 25% 45%;
+    --accent-foreground: 36 50% 98%;
+    --border: 36 25% 86%;
+    --input: 36 25% 86%;
+    --ring: 14 55% 48%;
+    --radius: 1.25rem;
+    --font-sans: 'Quicksand', 'Nunito', system-ui, sans-serif;
+    --font-body: 'Quicksand', 'Nunito', system-ui, sans-serif;
+    --image-filter: saturate(1.1) sepia(0.1) brightness(1.02);
   }
 }
 
@@ -62,14 +144,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-feature-settings: 'ss01', 'cv11';
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    transition: background-color 400ms ease, color 400ms ease;
   }
 
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
-    font-feature-settings: 'ss01';
+    font-family: var(--font-sans);
+  }
+
+  img {
+    filter: var(--image-filter);
+    transition: filter 400ms ease;
   }
 }
 

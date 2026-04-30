@@ -1,20 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { usePersona } from "./persona";
 
 export const Footer = () => {
+  const { copy } = usePersona();
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container-academy py-20">
         <div className="grid lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-10 w-10 bg-primary-foreground text-primary grid place-items-center font-bold">
+              <div className="h-10 w-10 bg-primary-foreground text-primary grid place-items-center font-bold rounded-[var(--radius)]">
                 N
               </div>
               <div className="leading-tight">
                 <div className="font-bold tracking-tight">NEXUS ACADEMY</div>
-                <div className="text-[10px] uppercase tracking-[0.25em] text-primary-foreground/60">of Design</div>
+                <div className="text-[10px] uppercase tracking-[0.25em] text-primary-foreground/60">{copy.brandTagline}</div>
               </div>
             </div>
             <p className="text-primary-foreground/70 max-w-sm leading-relaxed">
@@ -46,17 +48,15 @@ export const Footer = () => {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary-foreground/60 mb-5">Newsletter</h4>
-            <p className="text-sm text-primary-foreground/70 mb-4">
-              Quarterly dispatches from the studio.
-            </p>
+            <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary-foreground/60 mb-5">{copy.newsletterHeadline}</h4>
+            <p className="text-sm text-primary-foreground/70 mb-4">{copy.newsletterBody}</p>
             <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
               <Input
                 type="email"
                 placeholder="your@email.com"
                 className="bg-transparent border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/40"
               />
-              <Button variant="secondary" type="submit">Join</Button>
+              <Button variant="secondary" type="submit">{copy.newsletterCta}</Button>
             </form>
           </div>
         </div>

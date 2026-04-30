@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero.jpg";
+import { usePersona } from "./persona";
 
 export const Hero = () => {
+  const { copy } = usePersona();
   return (
     <section className="relative min-h-screen flex items-end pt-20 overflow-hidden bg-primary">
       <img
@@ -16,18 +18,16 @@ export const Hero = () => {
 
       <div className="container-academy relative z-10 pb-20 lg:pb-32 text-primary-foreground">
         <div className="max-w-4xl">
-          <p className="eyebrow text-primary-foreground/70 mb-6">Est. 1985 — Neo-Metropolis</p>
+          <p className="eyebrow text-primary-foreground/70 mb-6">{copy.heroEyebrow}</p>
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] tracking-tight">
-            Master the<br />Future of Design.
+            {copy.heroHeadline}
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-primary-foreground/80 leading-relaxed">
-            We don't just teach aesthetic principles; we engineer the interfaces,
-            products, and systems of tomorrow. Join a global community of makers,
-            thinkers, and disruptors.
+            {copy.heroBody}
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button size="lg" variant="secondary" className="group">
-              Start Your Journey
+              {copy.heroCtaPrimary}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button
@@ -35,7 +35,7 @@ export const Hero = () => {
               variant="outline"
               className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
-              Explore Programs
+              {copy.heroCtaSecondary}
             </Button>
           </div>
         </div>
